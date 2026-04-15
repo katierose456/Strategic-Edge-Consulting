@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { FieldGroup, Field, FieldLabel } from "@/components/ui/field"
+import { Label } from "@/components/ui/label"
 
 const contactInfo = [
   {
@@ -106,73 +106,71 @@ export function ContactSection() {
 
           {/* Contact Form */}
           <div>
-            <form onSubmit={handleSubmit}>
-              <FieldGroup>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Field>
-                    <FieldLabel htmlFor="name">Name</FieldLabel>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                    />
-                  </Field>
-                  <Field>
-                    <FieldLabel htmlFor="email">Email</FieldLabel>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                    />
-                  </Field>
-                </div>
-
-                <Field>
-                  <FieldLabel htmlFor="business">Business Name</FieldLabel>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Name</Label>
                   <Input
-                    id="business"
-                    value={formData.business}
-                    onChange={(e) => setFormData({ ...formData, business: e.target.value })}
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
                   />
-                </Field>
-
-                <Field>
-                  <FieldLabel htmlFor="help">What do you need help with?</FieldLabel>
-                  <Select
-                    value={formData.help}
-                    onValueChange={(value) => setFormData({ ...formData, help: value })}
-                  >
-                    <SelectTrigger id="help">
-                      <SelectValue placeholder="Select an option" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {helpOptions.map((option) => (
-                        <SelectItem key={option} value={option.toLowerCase()}>
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </Field>
-
-                <Field>
-                  <FieldLabel htmlFor="message">Message</FieldLabel>
-                  <Textarea
-                    id="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your business and what you're looking to achieve..."
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
                   />
-                </Field>
+                </div>
+              </div>
 
-                <Button type="submit" size="lg" className="w-full sm:w-auto">
-                  Request a Consultation
-                </Button>
-              </FieldGroup>
+              <div className="space-y-2">
+                <Label htmlFor="business">Business Name</Label>
+                <Input
+                  id="business"
+                  value={formData.business}
+                  onChange={(e) => setFormData({ ...formData, business: e.target.value })}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="help">What do you need help with?</Label>
+                <Select
+                  value={formData.help}
+                  onValueChange={(value) => setFormData({ ...formData, help: value })}
+                >
+                  <SelectTrigger id="help">
+                    <SelectValue placeholder="Select an option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {helpOptions.map((option) => (
+                      <SelectItem key={option} value={option.toLowerCase()}>
+                        {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="message">Message</Label>
+                <Textarea
+                  id="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell us about your business and what you're looking to achieve..."
+                />
+              </div>
+
+              <Button type="submit" size="lg" className="w-full sm:w-auto">
+                Request a Consultation
+              </Button>
             </form>
           </div>
         </div>
